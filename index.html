@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>St. Matthew</title>
+<!-- ajout à l'écran d'accueil iPhone -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="St. Matthew">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#ffffff">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<link rel="icon" href="data:image/png;base64,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">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sky:#2196d8;
+  --ink:#243244;
+  --slate:#5D6B7E;
+  --dim:#8794A6;
+  --line:#E4EAF2;
+  --nav-h:58px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:'Hanken Grotesk',system-ui,sans-serif;
+  color:var(--ink);
+  display:flex;flex-direction:column;
+  background:#F6F8FB;
+}
+/* ===== barre de navigation ===== */
+nav{
+  height:var(--nav-h);flex-shrink:0;
+  display:flex;align-items:center;gap:28px;
+  padding:0 clamp(16px,3vw,36px);
+  background:#fff;border-bottom:1px solid var(--line);
+}
+.brand{display:flex;align-items:center;gap:10px;margin-right:8px}
+.brand svg{width:26px;height:34px}
+.brand span{font-weight:800;font-size:.95rem;letter-spacing:1px;color:var(--sky)}
+.tabs{display:flex;gap:4px;height:100%}
+.tab{
+  display:flex;align-items:center;
+  padding:0 16px;height:100%;
+  font-weight:600;font-size:.92rem;color:var(--slate);
+  text-decoration:none;border-bottom:3px solid transparent;
+  transition:color .15s,border-color .15s;
+  white-space:nowrap;
+}
+.tab:hover{color:var(--ink)}
+.tab.active{color:var(--sky);border-bottom-color:var(--sky)}
+.tab:focus-visible{outline:2px solid var(--sky);outline-offset:-2px}
+
+/* ===== témoin de sauvegarde ===== */
+.save{
+  margin-left:auto;display:flex;align-items:center;gap:7px;
+  font-family:inherit;font-size:.78rem;font-weight:600;
+  border:1.5px solid var(--line);background:#fff;color:var(--dim);
+  border-radius:999px;padding:5px 13px;cursor:pointer;white-space:nowrap;
+  transition:color .15s,border-color .15s,background .15s;
+}
+.save:hover{color:var(--ink);border-color:#CBD8E6}
+.save .led{width:8px;height:8px;border-radius:50%;background:currentColor;flex:0 0 auto}
+.save.ok{color:#1F9D6B;border-color:#BFE7D5;background:#F1FBF6}
+.save.warn{color:#C2410C;border-color:#F5D5BC;background:#FEF6EF}
+.save.busy .led{animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+.save:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
+
+/* ===== contenu ===== */
+main{flex:1;position:relative;min-height:0}
+iframe{
+  position:absolute;inset:0;width:100%;height:100%;
+  border:0;display:none;background:#F6F8FB;
+}
+iframe.visible{display:block}
+@media (max-width:700px){
+  body{padding-bottom:env(safe-area-inset-bottom)}
+  nav{
+    padding-top:env(safe-area-inset-top);
+    height:calc(var(--nav-h) + env(safe-area-inset-top));
+  }
+  .tabs{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  nav{gap:14px}
+  .brand span{display:none}
+  .tab{padding:0 10px;font-size:.85rem}
+  .save span.txt{display:none}
+  .save{padding:5px 9px}
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="brand">
+    <svg viewBox="0 0 100 132" xmlns="http://www.w3.org/2000/svg" aria-label="St. Matthew">
+      <g fill="none" stroke="#2196d8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="50" y1="3.5" x2="50" y2="15"/>
+        <line x1="44" y1="9" x2="56" y2="9"/>
+        <path d="M 33 39 L 33 29 C 33 20.5, 43.5 18, 50 24.5 C 56.5 18, 67 20.5, 67 29 L 67 39"/>
+        <line x1="29" y1="39" x2="71" y2="39"/>
+        <line x1="29" y1="46" x2="71" y2="46"/>
+        <path d="M 25 56 L 75 56 L 75 84 Q 75 105 50 121 Q 25 105 25 84 Z"/>
+        <path d="M 46.5 65 L 53.5 65 L 53.5 78 L 64 78 L 64 85 L 53.5 85 L 53.5 103 L 46.5 103 L 46.5 85 L 36 85 L 36 78 L 46.5 78 Z" stroke-width="4"/>
+      </g>
+    </svg>
+    <span>ST. MATTHEW</span>
+  </div>
+  <div class="tabs" role="tablist">
+    <a class="tab" href="#jigsaw" data-frame="frame-jigsaw" role="tab">Jigsaw Method</a>
+    <a class="tab" href="#participation" data-frame="frame-participation" role="tab">Participation</a>
+    <a class="tab" href="#calendrier" data-frame="frame-calendrier" role="tab">Mon emploi du temps</a>
+    <a class="tab" href="#annee" data-frame="frame-annee" role="tab">Calendrier scolaire</a>
+    <a class="tab" href="#exercices" data-frame="frame-exercices" role="tab">Exercices</a>
+    <a class="tab" href="#jeux" data-frame="frame-jeux" role="tab">Jeux</a>
+  </div>
+  <button class="save" id="save" title="Sauvegarde"><span class="led"></span><span class="txt">Sauvegarde</span></button>
+</nav>
+<main>
+  <iframe id="frame-jigsaw" title="Jigsaw Method"></iframe>
+  <iframe id="frame-participation" title="Participation en classe"></iframe>
+  <iframe id="frame-calendrier" title="Mon emploi du temps"></iframe>
+  <iframe id="frame-annee" title="Calendrier scolaire 2026-2027"></iframe>
+  <iframe id="frame-exercices" title="Exercices"></iframe>
+  <iframe id="frame-jeux" title="Jeux"></iframe>
+</main>
+
+<script>
+/* ══════════════════════════════════════════════════════════
+   SAUVEGARDE AUTOMATIQUE
+   Tous les outils partagent le même stockage de navigateur.
+   1. copie permanente dans une seconde base (IndexedDB)
+   2. écriture dans un fichier du disque, si un fichier a été choisi
+   3. restauration silencieuse au chargement si des données manquent
+   ══════════════════════════════════════════════════════════ */
+const DB = "stmatthew-backup", STORE = "kv";
+const HAS_FS = typeof window.showSaveFilePicker === "function";
+let handle = null, dirty = false, timer = null;
+
+function idb(){
+  return new Promise((res, rej)=>{
+    const r = indexedDB.open(DB, 1);
+    r.onupgradeneeded = () => r.result.createObjectStore(STORE);
+    r.onsuccess = () => res(r.result);
+    r.onerror  = () => rej(r.error);
+  });
+}
+async function idbGet(k){
+  const db = await idb();
+  return new Promise((res,rej)=>{
+    const r = db.transaction(STORE,"readonly").objectStore(STORE).get(k);
+    r.onsuccess = ()=>res(r.result); r.onerror = ()=>rej(r.error);
+  });
+}
+async function idbSet(k, v){
+  const db = await idb();
+  return new Promise((res,rej)=>{
+    const t = db.transaction(STORE,"readwrite");
+    t.objectStore(STORE).put(v, k);
+    t.oncomplete = ()=>res(); t.onerror = ()=>rej(t.error);
+  });
+}
+
+/* photo de tout ce que les outils ont enregistré */
+function snapshot(){
+  const o = {};
+  for(let i=0; i<localStorage.length; i++){
+    const k = localStorage.key(i);
+    o[k] = localStorage.getItem(k);
+  }
+  return o;
+}
+/* ne remet que ce qui manque : on n'écrase jamais des données présentes */
+function restoreMissing(saved){
+  let n = 0;
+  for(const k in saved){
+    if(localStorage.getItem(k) === null){ localStorage.setItem(k, saved[k]); n++; }
+  }
+  return n;
+}
+
+async function writeFile(data){
+  if(!handle) return false;
+  const perm = await handle.queryPermission({mode:"readwrite"});
+  if(perm !== "granted") return false;              // on ne peut pas demander sans clic
+  const w = await handle.createWritable();
+  await w.write(JSON.stringify({saved:new Date().toISOString(), data}, null, 2));
+  await w.close();
+  return true;
+}
+
+async function persist(){
+  const data = snapshot();
+  try{ await idbSet("snapshot", {at:Date.now(), data}); }catch(e){}
+  let onDisk = false;
+  try{ onDisk = await writeFile(data); }catch(e){}
+  dirty = false;
+  status(onDisk ? "ok" : (handle ? "warn" : ""), onDisk ? "Sauvegardé" : (handle ? "Reconnecter" : "Sauvegarde"));
+}
+function schedule(){
+  dirty = true;
+  clearTimeout(timer);
+  timer = setTimeout(persist, 1500);              // on attend la fin des clics
+}
+
+function status(cls, txt){
+  const b = document.getElementById("save");
+  b.className = "save" + (cls ? " " + cls : "");
+  b.querySelector(".txt").textContent = txt;
+  b.title = txt === "Reconnecter"
+    ? "Cliquez pour réautoriser l'écriture dans votre fichier de sauvegarde"
+    : (handle ? "Sauvegarde automatique dans votre fichier" : "Choisir un fichier de sauvegarde");
+}
+
+/* clic : choisir un fichier, ou réautoriser celui qui existe */
+document.getElementById("save").addEventListener("click", async ()=>{
+  try{
+    if(handle){
+      const p = await handle.requestPermission({mode:"readwrite"});
+      if(p === "granted"){ await persist(); return; }
+    }
+    if(!HAS_FS){
+      alert("Ce navigateur ne peut pas écrire dans un fichier.\nVos données restent sauvegardées dans le navigateur.\nUtilisez Chrome ou Edge pour la sauvegarde sur disque.");
+      return;
+    }
+    handle = await window.showSaveFilePicker({
+      suggestedName: "sauvegarde-outils-st-matthew.json",
+      types: [{description:"Sauvegarde", accept:{"application/json":[".json"]}}]
+    });
+    await idbSet("handle", handle);
+    await persist();
+  }catch(e){ /* annulé par l'utilisateur */ }
+});
+
+/* ── démarrage ── */
+async function boot(){
+  try{ handle = await idbGet("handle") || null; }catch(e){}
+
+  // restauration silencieuse : fichier d'abord, sinon copie interne
+  let saved = null;
+  try{
+    if(handle && await handle.queryPermission({mode:"read"}) === "granted"){
+      saved = JSON.parse(await (await handle.getFile()).text()).data;
+    }
+  }catch(e){}
+  if(!saved){
+    try{ saved = (await idbGet("snapshot") || {}).data || null; }catch(e){}
+  }
+  if(saved){
+    const n = restoreMissing(saved);
+    if(n) console.log("Sauvegarde : " + n + " élément(s) restauré(s).");
+  }
+
+  status(handle ? "ok" : "", handle ? "Sauvegardé" : "Sauvegarde");
+  if(!handle && !HAS_FS) status("", "Sauvegarde");
+
+  show(location.hash || "#jigsaw");               // les outils démarrent après restauration
+  await persist();
+
+  window.addEventListener("storage", schedule);   // un outil a écrit quelque chose
+  setInterval(()=>{                               // filet de sécurité
+    const now = JSON.stringify(snapshot());
+    if(now !== boot._last){ boot._last = now; schedule(); }
+  }, 4000);
+  boot._last = JSON.stringify(snapshot());
+}
+window.addEventListener("beforeunload", ()=>{ if(dirty) persist(); });
+
+/* ══ onglets ══ */
+const SOURCES = {
+  'frame-jigsaw': 'jigsaw.html',
+  'frame-participation': 'participation.html',
+  'frame-calendrier': 'calendar.html',
+  'frame-annee': 'annee.html',
+  'frame-exercices': 'exercices.html',
+  'frame-jeux': 'jeux.html'
+};
+const tabs = document.querySelectorAll('.tab');
+function show(hash){
+  const target = document.querySelector(`.tab[href="${hash}"]`) || tabs[0];
+  tabs.forEach(t => t.classList.toggle('active', t === target));
+  const frameId = target.dataset.frame;
+  document.querySelectorAll('iframe').forEach(f => {
+    if (f.id === frameId && !f.src) f.src = SOURCES[f.id]; // chargé une seule fois : l'état est conservé
+    f.classList.toggle('visible', f.id === frameId);
+  });
+}
+tabs.forEach(t => t.addEventListener('click', e => {
+  e.preventDefault();
+  history.replaceState(null, '', t.getAttribute('href'));
+  show(t.getAttribute('href'));
+}));
+
+boot();
+</script>
+</body>
+</html>

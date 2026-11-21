@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jigsaw Method · St. Matthew</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sky:#2AA9E0;
+  --ink:#243244;
+  --slate:#5D6B7E;
+  --line:#E4EAF2;
+  --sub-h:44px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:'Hanken Grotesk',system-ui,sans-serif;
+  color:var(--ink);
+  display:flex;flex-direction:column;
+  background:#EAF2FB;
+}
+
+/* ===== barre de sous-onglets ===== */
+.subnav{
+  height:var(--sub-h);flex-shrink:0;
+  display:flex;align-items:stretch;gap:6px;
+  padding:0 clamp(14px,3vw,30px);
+  background:rgba(255,255,255,.72);
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--line);
+}
+.subtab{
+  display:flex;align-items:center;gap:7px;
+  padding:0 15px;
+  background:none;border:none;
+  border-bottom:3px solid transparent;
+  font-family:inherit;font-weight:600;font-size:.88rem;
+  color:var(--slate);cursor:pointer;white-space:nowrap;
+  transition:color .15s,border-color .15s;
+}
+.subtab:hover{color:var(--ink)}
+.subtab.active{color:var(--sky);border-bottom-color:var(--sky)}
+.subtab:focus-visible{outline:2px solid var(--sky);outline-offset:-3px}
+
+/* ===== contenu ===== */
+main{flex:1;position:relative;min-height:0}
+iframe{
+  position:absolute;inset:0;width:100%;height:100%;
+  border:0;display:none;background:#EAF2FB;
+}
+iframe.visible{display:block}
+
+@media (max-width:520px){
+  .subnav{padding:0 10px}
+  .subtab{padding:0 10px;font-size:.82rem}
+}
+</style>
+</head>
+<body>
+
+<div class="subnav" role="tablist">
+  <button class="subtab active" data-frame="frame-biz" role="tab">📊 Business 9609</button>
+  <button class="subtab" data-frame="frame-fr" role="tab">🇫🇷 Français</button>
+</div>
+
+<main>
+  <iframe id="frame-biz" title="Jigsaw · A Level Business"></iframe>
+  <iframe id="frame-fr"  title="Jigsaw · Français"></iframe>
+</main>
+
+<script>
+const SOURCES = {
+  'frame-biz': 'jigsaw-business.html',
+  'frame-fr' : 'jigsaw-francais.html'
+};
+
+function show(frameId){
+  document.querySelectorAll('.subtab').forEach(b =>
+    b.classList.toggle('active', b.dataset.frame === frameId));
+  document.querySelectorAll('iframe').forEach(f => {
+    // chargé une seule fois : le tirage en cours est conservé quand on change de sous-onglet
+    if (f.id === frameId && !f.src) f.src = SOURCES[f.id];
+    f.classList.toggle('visible', f.id === frameId);
+  });
+}
+
+document.querySelectorAll('.subtab').forEach(b =>
+  b.addEventListener('click', () => show(b.dataset.frame)));
+
+show('frame-biz');
+</script>
+
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Avoir / être — les 20 expressions essentielles</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FBF8F4; --card:#FFFFFF; --ink:#2C2A38; --muted:#7A7688; --line:#E5E0EE;
+    --violet:#6F5AA8; --violet-soft:#EFEAF8;
+    --teal:#0B6E75;  --teal-soft:#E2F1F1;
+    --rose:#A83B62;  --rose-soft:#FAE7ED;
+    --ocre:#8A6416;  --ocre-soft:#F7EFDC;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;
+       font-size:15px;line-height:1.35;padding:14px 16px 20px}
+  .sheet{max-width:1200px;margin:0 auto}
+
+  header{display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+         border-bottom:2px solid var(--violet);padding-bottom:9px;margin-bottom:14px}
+  h1{font-family:'Playfair Display',Georgia,serif;font-size:24px;font-weight:600;margin:0;letter-spacing:-.2px}
+  h1 em{font-style:italic;color:var(--violet)}
+  .consigne{color:var(--muted);font-size:13px;margin:2px 0 0}
+  .progress{margin-left:auto;display:flex;align-items:center;gap:10px}
+  .bar{width:190px;height:9px;background:var(--violet-soft);border-radius:99px;overflow:hidden}
+  .bar span{display:block;height:100%;width:0;background:var(--teal);border-radius:99px;transition:width .35s ease}
+  .count{font-size:13px;font-weight:700;color:var(--violet);white-space:nowrap}
+
+  .grid{display:grid;grid-template-columns:310px 1fr;gap:18px;align-items:start}
+
+  .bank{background:var(--card);border:1px solid var(--line);border-radius:12px;
+        padding:10px 10px 12px;position:sticky;top:12px}
+  .bank h2,.sentences h2{font-size:11px;font-weight:700;text-transform:uppercase;
+        letter-spacing:.9px;color:var(--muted);margin:2px 0 8px 2px}
+  .chips{display:flex;flex-wrap:wrap;gap:5px}
+  .chip{font:inherit;font-size:12.5px;font-weight:500;background:var(--violet-soft);color:var(--violet);
+        border:1.5px solid transparent;border-radius:7px;padding:5px 9px;cursor:pointer;transition:.12s}
+  .chip:hover{border-color:var(--violet);transform:translateY(-1px)}
+  .chip[aria-pressed="true"]{background:var(--violet);color:#fff;border-color:var(--violet);
+        box-shadow:0 0 0 3px rgba(111,90,168,.22)}
+  .chip.used{display:none}
+  .chip:focus-visible,.tag:focus-visible,.conj:focus-visible,.btn:focus-visible,.reveal:focus-visible{
+        outline:2.5px solid var(--ink);outline-offset:2px}
+
+  .sentences{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 14px 10px}
+  ol{list-style:none;margin:0;padding:0;counter-reset:n}
+  li{counter-increment:n;display:flex;align-items:center;flex-wrap:wrap;gap:5px;
+     padding:5px 0;border-bottom:1px dotted var(--line);transition:.2s}
+  li:last-child{border-bottom:none}
+  li::before{content:counter(n)".";font-size:11.5px;font-weight:700;color:var(--muted);
+     min-width:19px;text-align:right}
+  li.done{background:linear-gradient(90deg,var(--teal-soft),transparent 70%);border-radius:6px}
+  li.shake{animation:shake .34s}
+  @keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}
+    40%{transform:translateX(5px)}60%{transform:translateX(-3px)}80%{transform:translateX(2px)}}
+
+  .answer{display:inline-flex;align-items:center;gap:6px}
+  .tag{font:inherit;font-size:12px;font-weight:600;background:#fff;color:var(--muted);
+       border:1.5px dashed var(--line);border-radius:7px;padding:3px 9px;cursor:pointer;
+       white-space:nowrap;transition:.14s;font-style:italic}
+  .tag:hover{background:var(--ocre-soft);border-color:var(--violet);color:var(--violet)}
+  .tag.done{font-style:normal;background:var(--teal-soft);color:var(--teal);
+       border:1.5px solid var(--teal);cursor:default;animation:pop .3s}
+  @keyframes pop{0%{transform:scale(.8)}55%{transform:scale(1.09)}100%{transform:scale(1)}}
+
+  .reveal{font:inherit;font-size:11px;font-weight:700;letter-spacing:.3px;
+       background:var(--violet);color:#fff;border:none;border-radius:99px;
+       padding:3px 10px;cursor:pointer;transition:.14s}
+  .reveal:hover{background:#5C4A92;transform:translateY(-1px)}
+  .reveal.off{background:#fff;color:var(--violet);border:1.5px solid var(--violet)}
+
+  .full{font-size:15px}
+  .full b{color:var(--teal);font-weight:700;background:var(--teal-soft);
+     padding:1px 6px;border-radius:5px;animation:pop .3s}
+
+  .conj{font:inherit;font-size:14.5px;font-weight:600;color:var(--ink);width:158px;
+        border:none;border-bottom:2px dotted var(--line);background:transparent;
+        padding:1px 6px 2px;border-radius:4px 4px 0 0}
+  .conj::placeholder{color:#C9C3D8;font-weight:400;font-style:italic;font-size:12.5px}
+  .conj:focus{outline:none;border-bottom:2px solid var(--violet);background:var(--violet-soft)}
+  .conj.ok{color:var(--teal);border-bottom:2px solid var(--teal);background:var(--teal-soft)}
+  .conj.almost{color:var(--ocre);border-bottom:2px solid var(--ocre);background:var(--ocre-soft)}
+  .conj.ko{color:var(--rose);border-bottom:2px dotted var(--rose);background:var(--rose-soft)}
+  .mark{font-size:13px;font-weight:700}
+  .mark.ok{color:var(--teal)} .mark.almost{color:var(--ocre)} .mark.ko{color:var(--rose)}
+  [hidden]{display:none!important}
+
+  .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px;align-items:center}
+  .btn{font:inherit;font-size:13px;font-weight:600;padding:8px 15px;border-radius:8px;
+       cursor:pointer;transition:.12s;border:1.5px solid var(--violet);background:#fff;color:var(--violet)}
+  .btn:hover{background:var(--violet-soft)}
+  .switch{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;
+       color:var(--violet);background:var(--violet-soft);padding:7px 13px;border-radius:8px;cursor:pointer}
+  .switch input{accent-color:var(--violet);width:15px;height:15px;cursor:pointer}
+  .msg{font-size:13px;color:var(--muted);font-weight:500;min-height:18px}
+  .msg strong{color:var(--ink)}
+  .msg.win{color:var(--teal)}
+
+  @media(max-width:860px){.grid{grid-template-columns:1fr}.bank{position:static}}
+  @media print{body{padding:0}.actions,.progress,.reveal,.bank{display:none}}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header>
+    <div>
+      <h1>Expressions avec <em>avoir</em> et <em>être</em></h1>
+      <p class="consigne">Cliquez une expression, puis la phrase qui va avec. Ensuite, <b>conjuguer</b> vous montre la phrase complète.</p>
+    </div>
+    <div class="progress">
+      <div class="bar"><span id="fill"></span></div>
+      <div class="count" id="count">0 / 15</div>
+    </div>
+  </header>
+
+  <div class="grid">
+    <aside class="bank">
+      <h2>Les 20 expressions essentielles</h2>
+      <div class="chips" id="chips"></div>
+    </aside>
+    <section class="sentences">
+      <h2>Trouvez l'expression de chaque phrase</h2>
+      <ol id="list"></ol>
+    </section>
+  </div>
+
+  <div class="actions">
+    <label class="switch"><input type="checkbox" id="write"> Mode écriture</label>
+    <button class="btn" id="shuffle">Mélanger</button>
+    <button class="btn" id="reset">Recommencer</button>
+    <button class="btn" id="all">Tout révéler</button>
+    <span class="msg" id="msg"></span>
+  </div>
+
+</div>
+
+<script>
+const EXPR = [
+  "avoir … ans","avoir faim","avoir soif","avoir froid","avoir chaud",
+  "avoir sommeil","avoir mal à…","avoir peur de…","avoir besoin de…","avoir envie de…",
+  "avoir de la chance","avoir raison","avoir tort","avoir l'air (+ adj.)","avoir le temps de…",
+  "avoir du mal à…","avoir hâte de…","en avoir marre de…","être d'accord (avec…)","être en train de…"
+];
+
+const ITEMS = [
+  {a:"— Tu fêtes ton anniversaire samedi ? — Oui,", b:"!", key:0, sol:"j'ai quinze ans",
+   alt:["j'ai quinze ans","j'ai 15 ans"]},
+  {a:"Il est midi et je n'ai rien mangé ce matin. On va à la cafétéria ?", b:"", key:1, sol:"J'ai faim",
+   alt:["j'ai faim"]},
+  {a:"À Bogotá, le matin il fait 8 degrés : nous", b:"dans le bus.", key:3, sol:"avons froid",
+   alt:["avons froid","nous avons froid"]},
+  {a:"J'ai regardé des vidéos jusqu'à 2 h du matin. En cours de maths,", b:"", key:5, sol:"j'ai sommeil",
+   alt:["j'ai sommeil"]},
+  {a:"Trois heures sur mon téléphone sans pause :", b:"aux yeux.", key:6, sol:"j'ai mal",
+   alt:["j'ai mal"]},
+  {a:"Ma sœur refuse de regarder ce film : elle", b:"des clowns.", key:7, sol:"a peur",
+   alt:["a peur","elle a peur"]},
+  {a:"Mon portable est à 3 % :", b:"d'un chargeur.", key:8, sol:"j'ai besoin",
+   alt:["j'ai besoin"]},
+  {a:"Le match est fini, il fait 30 degrés : on", b:"d'une glace.", key:9, sol:"a envie",
+   alt:["a envie","on a envie"]},
+  {a:"— Le contrôle est mardi, pas lundi. — Regarde l'agenda… tu", b:"!", key:11, sol:"as raison",
+   alt:["as raison","tu as raison"]},
+  {a:"Qu'est-ce qui se passe ? Tu", b:"fatigué aujourd'hui.", key:13, sol:"as l'air",
+   alt:["as l'air","tu as l'air"]},
+  {a:"Le prof arrive dans dix minutes : nous", b:"de finir l'exercice.", key:14, sol:"avons le temps",
+   alt:["avons le temps","nous avons le temps"]},
+  {a:"Je comprends le français écrit, mais", b:"à parler vite.", key:15, sol:"j'ai du mal",
+   alt:["j'ai du mal"]},
+  {a:"Les vacances commencent vendredi !", b:"de partir à la plage.", key:16, sol:"J'ai hâte",
+   alt:["j'ai hâte"]},
+  {a:"Ça fait deux heures que je révise et il reste trois pages…", b:"!", key:17, sol:"j'en ai marre",
+   alt:["j'en ai marre","en ai marre"]},
+  {a:"Ne l'appelle pas maintenant : elle", b:"de passer son examen.", key:19, sol:"est en train",
+   alt:["est en train","elle est en train"]}
+];
+
+const BRAVO = ["Bien vu !","Exact !","Nickel.","Parfait.","Oui !","Bravo.","Tout juste.","Impeccable."];
+const KEY = "expr-avoir-etre-v4";
+
+let done = new Array(ITEMS.length).fill(false);
+let typed = new Array(ITEMS.length).fill("");
+let selected = null;
+let order = EXPR.map((_, i) => i);
+let writeMode = false;
+
+const $chips = document.getElementById("chips");
+const $list  = document.getElementById("list");
+const $msg   = document.getElementById("msg");
+const $count = document.getElementById("count");
+const $fill  = document.getElementById("fill");
+
+/* ---------- normalisation ---------- */
+const norm = s => s.toLowerCase().replace(/[’‘`´]/g,"'").replace(/\s*'\s*/g,"'")
+  .replace(/[.!?,;:]+$/g,"").replace(/\s+/g," ").trim();
+const strip = s => norm(s).normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+
+/* ---------- construction ---------- */
+function buildList(){
+  $list.innerHTML = "";
+  ITEMS.forEach((it, i) => {
+    const li = document.createElement("li");
+    li.dataset.i = i;
+    li.innerHTML =
+      '<span class="txt a"></span>' +
+      '<span class="answer">' +
+        '<button class="tag" data-i="' + i + '">expression ?</button>' +
+        '<input class="conj" data-i="' + i + '" type="text" placeholder="conjuguez…" autocomplete="off" spellcheck="false" hidden>' +
+        '<span class="mark" data-i="' + i + '"></span>' +
+        '<button class="reveal" data-i="' + i + '" hidden>conjuguer</button>' +
+      '</span>' +
+      '<span class="txt b"></span>' +
+      '<span class="full" hidden></span>';
+    li.querySelector(".a").textContent = it.a;
+    li.querySelector(".b").textContent = it.b;
+    li.querySelector(".full").innerHTML = "";
+    $list.append(li);
+  });
+}
+
+function buildChips(){
+  $chips.innerHTML = "";
+  order.forEach(k => {
+    const c = document.createElement("button");
+    c.className = "chip"; c.textContent = EXPR[k]; c.dataset.k = k;
+    c.setAttribute("aria-pressed","false");
+    $chips.append(c);
+  });
+  syncChips();
+}
+
+function syncChips(){
+  $chips.querySelectorAll(".chip").forEach(c => {
+    const k = +c.dataset.k;
+    c.classList.toggle("used", ITEMS.some((it,i) => done[i] && it.key === k));
+    c.setAttribute("aria-pressed", String(selected === k));
+  });
+}
+
+function progress(){
+  const n = done.filter(Boolean).length;
+  $count.textContent = n + " / 15";
+  $fill.style.width = (n / 15 * 100) + "%";
+  if(n === 15){ $msg.className = "msg win"; $msg.innerHTML = "<strong>15 / 15 — terminé !</strong> Cliquez sur « conjuguer » pour relire chaque phrase."; }
+}
+
+/* ---------- jeu ---------- */
+function select(k){ selected = (selected === k) ? null : k; syncChips(); }
+
+function tryDrop(i){
+  const li = $list.querySelector('li[data-i="' + i + '"]');
+  const tag = li.querySelector(".tag");
+  if(done[i]) return;
+  if(selected === null){
+    $msg.className = "msg";
+    $msg.textContent = "Choisissez d'abord une expression à gauche.";
+    return;
+  }
+  if(selected === ITEMS[i].key){
+    done[i] = true;
+    tag.textContent = EXPR[ITEMS[i].key];
+    tag.className = "tag done";
+    li.classList.add("done");
+    li.querySelector(".reveal").hidden = false;
+    if(writeMode){ const c = li.querySelector(".conj"); c.hidden = false; c.focus(); }
+    selected = null;
+    $msg.className = "msg";
+    $msg.textContent = BRAVO[Math.floor(Math.random() * BRAVO.length)];
+    syncChips(); progress(); save();
+  }else{
+    li.classList.remove("shake"); void li.offsetWidth; li.classList.add("shake");
+    $msg.className = "msg";
+    $msg.innerHTML = "<strong>Pas celle-ci.</strong> Relisez la phrase et réessayez.";
+  }
+}
+
+function toggleReveal(i, force){
+  const li = $list.querySelector('li[data-i="' + i + '"]');
+  const it = ITEMS[i];
+  const full = li.querySelector(".full");
+  const show = force !== undefined ? force : full.hidden;
+  if(show){
+    full.innerHTML = "";
+    full.append(document.createTextNode(it.a + " "));
+    const b = document.createElement("b"); b.textContent = it.sol; full.append(b);
+    if(it.b) full.append(document.createTextNode(" " + it.b));
+    full.hidden = false;
+    li.querySelector(".a").hidden = true;
+    li.querySelector(".b").hidden = true;
+    li.querySelector(".tag").hidden = true;
+    li.querySelector(".conj").hidden = true;
+    li.querySelector(".mark").hidden = true;
+    li.querySelector(".reveal").textContent = "cacher";
+    li.querySelector(".reveal").classList.add("off");
+  }else{
+    full.hidden = true;
+    li.querySelector(".a").hidden = false;
+    li.querySelector(".b").hidden = false;
+    li.querySelector(".tag").hidden = false;
+    li.querySelector(".conj").hidden = !writeMode;
+    li.querySelector(".mark").hidden = false;
+    li.querySelector(".reveal").textContent = "conjuguer";
+    li.querySelector(".reveal").classList.remove("off");
+  }
+}
+
+function checkTyped(i){
+  const li = $list.querySelector('li[data-i="' + i + '"]');
+  const inp = li.querySelector(".conj"), mark = li.querySelector(".mark");
+  const v = inp.value.trim();
+  typed[i] = v; save();
+  if(v === ""){ inp.className = "conj"; mark.className = "mark"; mark.textContent = ""; return; }
+  const it = ITEMS[i];
+  if(it.alt.some(a => norm(a) === norm(v))){
+    inp.className = "conj ok"; mark.className = "mark ok"; mark.textContent = "✓";
+  }else if(it.alt.some(a => strip(a) === strip(v))){
+    inp.className = "conj almost"; mark.className = "mark almost"; mark.textContent = "≈";
+    $msg.className = "msg"; $msg.innerHTML = "Presque : <strong>" + it.sol + "</strong> (accent ou orthographe).";
+  }else{
+    inp.className = "conj ko"; mark.className = "mark ko"; mark.textContent = "✗";
+  }
+}
+
+/* ---------- état ---------- */
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify({done, typed, writeMode})); }catch(e){} }
+function load(){
+  try{
+    const d = JSON.parse(localStorage.getItem(KEY) || "null");
+    if(d && d.done && d.done.length === ITEMS.length){
+      done = d.done; typed = d.typed || typed; writeMode = !!d.writeMode;
+    }
+  }catch(e){}
+}
+function restore(){
+  document.getElementById("write").checked = writeMode;
+  ITEMS.forEach((it, i) => {
+    if(!done[i]) return;
+    const li = $list.querySelector('li[data-i="' + i + '"]');
+    const tag = li.querySelector(".tag");
+    tag.textContent = EXPR[it.key]; tag.className = "tag done";
+    li.classList.add("done");
+    li.querySelector(".reveal").hidden = false;
+    const c = li.querySelector(".conj");
+    c.value = typed[i] || ""; c.hidden = !writeMode;
+    if(c.value) checkTyped(i);
+  });
+  syncChips(); progress();
+}
+
+/* ---------- événements ---------- */
+$chips.addEventListener("click", e => { const c = e.target.closest(".chip"); if(c) select(+c.dataset.k); });
+$list.addEventListener("click", e => {
+  const r = e.target.closest(".reveal"); if(r){ toggleReveal(+r.dataset.i); return; }
+  const t = e.target.closest(".tag");    if(t){ tryDrop(+t.dataset.i); return; }
+  const li = e.target.closest("li");
+  if(li && !e.target.closest("input")) tryDrop(+li.dataset.i);
+});
+$list.addEventListener("input", e => { if(e.target.classList.contains("conj")){
+  e.target.className = "conj";
+  const m = $list.querySelector('.mark[data-i="' + e.target.dataset.i + '"]');
+  m.className = "mark"; m.textContent = "";
+}});
+$list.addEventListener("change", e => { if(e.target.classList.contains("conj")) checkTyped(+e.target.dataset.i); });
+$list.addEventListener("keydown", e => {
+  if(e.key === "Enter" && e.target.classList.contains("conj")){
+    checkTyped(+e.target.dataset.i);
+    const nxt = [...$list.querySelectorAll(".conj")].find(c => !c.hidden && c.dataset.i > e.target.dataset.i);
+    if(nxt) nxt.focus();
+  }
+});
+
+document.getElementById("write").onchange = e => {
+  writeMode = e.target.checked;
+  $list.querySelectorAll(".conj").forEach(c => {
+    const i = +c.dataset.i;
+    c.hidden = !(writeMode && done[i] && $list.querySelector('li[data-i="' + i + '"] .full').hidden);
+  });
+  save();
+};
+document.getElementById("shuffle").onclick = () => { order.sort(() => Math.random() - .5); buildChips(); };
+document.getElementById("all").onclick = () => { ITEMS.forEach((_, i) => toggleReveal(i, true)); };
+document.getElementById("reset").onclick = () => {
+  done.fill(false); typed.fill(""); selected = null;
+  $msg.className = "msg"; $msg.textContent = "";
+  buildList(); buildChips(); progress(); save();
+};
+
+load(); buildList(); buildChips(); restore();
+</script>
+</body>
+</html>

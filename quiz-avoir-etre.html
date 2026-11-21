@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quiz à imprimer — être / avoir (4 par page)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#20202A;
+    --muted:#6E6A7C;
+    --line:#C9C4D6;
+    --violet:#6F5AA8;
+    --soft:#F3F0FA;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:#E8E6EF}
+  body{font-family:'Inter',system-ui,sans-serif;color:var(--ink)}
+
+  /* ── barre d'écran (jamais imprimée) ── */
+  .toolbar{
+    position:sticky;top:0;z-index:10;
+    display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+    padding:12px 18px;background:#fff;border-bottom:1px solid var(--line);
+  }
+  .toolbar h1{font-size:15px;margin:0;font-weight:700}
+  .toolbar .sp{flex:1}
+  .btn{
+    font:inherit;font-size:13px;font-weight:600;padding:8px 16px;border-radius:8px;cursor:pointer;
+    border:1.5px solid var(--violet);background:var(--violet);color:#fff;
+  }
+  .btn.ghost{background:#fff;color:var(--violet)}
+  .btn:hover{filter:brightness(1.06)}
+  .switch{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;
+    color:var(--violet);background:var(--soft);padding:7px 13px;border-radius:8px;cursor:pointer}
+  .switch input{accent-color:var(--violet);width:15px;height:15px;cursor:pointer}
+  .tip{font-size:12px;color:var(--muted)}
+
+  /* ── feuille A4 ── */
+  .page{
+    width:210mm;height:297mm;margin:18px auto;background:#fff;
+    display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;
+    box-shadow:0 6px 24px rgba(32,32,42,.18);
+  }
+  /* repères de découpe : la croix centrale */
+  .slip:nth-child(1){border-right:1px dashed var(--line);border-bottom:1px dashed var(--line)}
+  .slip:nth-child(2){border-bottom:1px dashed var(--line)}
+  .slip:nth-child(3){border-right:1px dashed var(--line)}
+
+  .slip{
+    padding:7mm 6mm 5mm;
+    display:flex;flex-direction:column;
+    font-size:7.9pt;line-height:1.28;
+  }
+
+  /* ── en-tête du billet ── */
+  .idline{
+    display:flex;gap:8px;font-size:7pt;color:var(--muted);margin-bottom:3.4mm;
+  }
+  .idline span{display:flex;align-items:flex-end;gap:4px;white-space:nowrap}
+  .idline i{
+    display:block;border-bottom:.6px solid var(--line);height:9px;font-style:normal;
+  }
+  .idline .nom i{width:38mm}
+  .idline .date i{width:20mm}
+
+  h2{
+    font-family:'Playfair Display',Georgia,serif;
+    font-size:11.4pt;font-weight:600;margin:0 0 1mm;line-height:1.1;
+  }
+  h2 em{font-style:italic;color:var(--violet)}
+  .sub{
+    font-size:6.6pt;color:var(--muted);letter-spacing:.3px;text-transform:uppercase;
+    font-weight:600;border-bottom:1.4px solid var(--violet);padding-bottom:1.6mm;margin-bottom:3mm;
+  }
+
+  /* ── questions ── */
+  ol{margin:0;padding:0;list-style:none;counter-reset:q}
+  ol li{counter-increment:q;margin-bottom:2.7mm}
+  .q{display:flex;gap:4px;margin-bottom:1.3mm}
+  .q b{color:var(--violet);font-weight:700;flex:0 0 auto}
+  .q span{flex:1}
+  .fill{
+    display:inline-block;min-width:19mm;border-bottom:.8px dotted var(--ink);
+    vertical-align:baseline;
+  }
+  .opts{
+    display:grid;grid-template-columns:1fr 1fr;gap:.9mm 3mm;padding-left:3.6mm;
+  }
+  .opt{display:flex;align-items:flex-start;gap:1.6mm;font-size:7.6pt}
+  .box{
+    flex:0 0 auto;width:2.9mm;height:2.9mm;margin-top:.5mm;
+    border:.7px solid var(--ink);border-radius:.6mm;
+  }
+  .opt u{text-decoration:none;color:var(--muted);font-weight:600;margin-right:.6mm}
+
+  /* ── bonus ── */
+  .bonus{
+    margin-top:auto;padding-top:2.4mm;border-top:1px dashed var(--line);
+  }
+  .bonus .t{font-size:7.4pt;font-weight:600;margin-bottom:1.6mm}
+  .bonus .t em{font-style:normal;color:var(--violet);font-weight:700}
+  .rule{border-bottom:.6px solid var(--line);height:5.2mm}
+  .rule:last-child{height:5mm}
+
+  /* ── corrigé (copie du professeur) ── */
+  body.key .opt.right .box{background:var(--violet);border-color:var(--violet)}
+  body.key .opt.right{font-weight:700;color:var(--violet)}
+  .keymark{display:none;font-size:6.4pt;color:var(--violet);font-weight:700;
+    letter-spacing:.4px;text-transform:uppercase;margin-bottom:1.6mm}
+  body.key .keymark{display:block}
+
+  /* ── impression ── */
+  @page{size:A4;margin:0}
+  @media print{
+    html,body{background:#fff}
+    .toolbar{display:none}
+    .page{margin:0;box-shadow:none;width:210mm;height:297mm;page-break-after:always}
+    .slip{padding:7mm 6mm 5mm}
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <h1>Quiz être / avoir — 4 billets par page</h1>
+  <label class="switch"><input type="checkbox" id="key"> Corrigé (copie prof)</label>
+  <span class="tip">Imprimez en A4, 100 % — puis coupez le long des pointillés.</span>
+  <span class="sp"></span>
+  <button class="btn" onclick="window.print()">🖨 Imprimer</button>
+</div>
+
+<div class="page" id="page"></div>
+
+<template id="slip">
+  <div class="slip">
+    <div class="idline">
+      <span class="nom">Nom : <i></i></span>
+      <span class="date">Date : <i></i></span>
+    </div>
+
+    <h2>Expressions avec <em>être</em> et <em>avoir</em></h2>
+    <div class="sub">Quiz de fin de cours · 5 questions</div>
+    <div class="keymark">◆ Corrigé — copie du professeur</div>
+
+    <ol>
+      <li>
+        <div class="q"><b>1.</b><span>Il est midi et je n'ai rien mangé ce matin : <span class="fill"></span>.</span></div>
+        <div class="opts">
+          <div class="opt"><span class="box"></span><span><u>a)</u>j'ai chaud</span></div>
+          <div class="opt right"><span class="box"></span><span><u>b)</u>j'ai faim</span></div>
+          <div class="opt"><span class="box"></span><span><u>c)</u>j'ai raison</span></div>
+          <div class="opt"><span class="box"></span><span><u>d)</u>je suis d'accord</span></div>
+        </div>
+      </li>
+      <li>
+        <div class="q"><b>2.</b><span>— Le cours commence à 8 h 00 et il est 8 h 15 ! — Vite, nous <span class="fill"></span> !</span></div>
+        <div class="opts">
+          <div class="opt right"><span class="box"></span><span><u>a)</u>sommes en retard</span></div>
+          <div class="opt"><span class="box"></span><span><u>b)</u>avons de la chance</span></div>
+          <div class="opt"><span class="box"></span><span><u>c)</u>avons froid</span></div>
+          <div class="opt"><span class="box"></span><span><u>d)</u>sommes en forme</span></div>
+        </div>
+      </li>
+      <li>
+        <div class="q"><b>3.</b><span>Ma sœur adore les chiens, mais elle <span class="fill"></span> des serpents.</span></div>
+        <div class="opts">
+          <div class="opt"><span class="box"></span><span><u>a)</u>a l'air</span></div>
+          <div class="opt"><span class="box"></span><span><u>b)</u>a le temps</span></div>
+          <div class="opt right"><span class="box"></span><span><u>c)</u>a peur</span></div>
+          <div class="opt"><span class="box"></span><span><u>d)</u>a envie</span></div>
+        </div>
+      </li>
+      <li>
+        <div class="q"><b>4.</b><span>Mon ordinateur n'a plus de batterie, j'<span class="fill"></span> d'un chargeur.</span></div>
+        <div class="opts">
+          <div class="opt right"><span class="box"></span><span><u>a)</u>ai besoin</span></div>
+          <div class="opt"><span class="box"></span><span><u>b)</u>ai tort</span></div>
+          <div class="opt"><span class="box"></span><span><u>c)</u>ai hâte</span></div>
+          <div class="opt"><span class="box"></span><span><u>d)</u>ai du mal</span></div>
+        </div>
+      </li>
+      <li>
+        <div class="q"><b>5.</b><span>Regarde le thermomètre, il fait 38 degrés : on <span class="fill"></span> !</span></div>
+        <div class="opts">
+          <div class="opt"><span class="box"></span><span><u>a)</u>a très froid</span></div>
+          <div class="opt right"><span class="box"></span><span><u>b)</u>a très chaud</span></div>
+          <div class="opt"><span class="box"></span><span><u>c)</u>est en train</span></div>
+          <div class="opt"><span class="box"></span><span><u>d)</u>a de la chance</span></div>
+        </div>
+      </li>
+    </ol>
+
+    <div class="bonus">
+      <div class="t">🎁 <em>Bonus</em> — une phrase avec « avoir l'habitude de » :</div>
+      <div class="rule"></div>
+      <div class="rule"></div>
+    </div>
+  </div>
+</template>
+
+<script>
+/* quatre billets identiques sur la feuille */
+const page = document.getElementById("page");
+const tpl  = document.getElementById("slip");
+for(let i = 0; i < 4; i++) page.append(tpl.content.cloneNode(true));
+
+document.getElementById("key").addEventListener("change", e => {
+  document.body.classList.toggle("key", e.target.checked);
+});
+</script>
+</body>
+</html>

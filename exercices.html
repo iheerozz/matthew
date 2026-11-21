@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exercices · St. Matthew</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --violet:#6F5AA8;
+  --ink:#2C2A38;
+  --muted:#7A7688;
+  --line:#E5E0EE;
+  --sub-h:44px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  color:var(--ink);
+  display:flex;flex-direction:column;
+  background:#FBF8F4;
+}
+
+/* ===== barre de sous-onglets ===== */
+.subnav{
+  height:var(--sub-h);flex-shrink:0;
+  display:flex;align-items:stretch;gap:6px;
+  padding:0 clamp(12px,3vw,26px);
+  background:rgba(255,255,255,.8);
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--line);
+  overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;
+}
+.subnav::-webkit-scrollbar{display:none}
+.subtab{
+  display:flex;align-items:center;gap:7px;
+  padding:0 15px;flex:0 0 auto;
+  background:none;border:none;
+  border-bottom:3px solid transparent;
+  font-family:inherit;font-weight:600;font-size:.88rem;
+  color:var(--muted);cursor:pointer;white-space:nowrap;
+  transition:color .15s,border-color .15s;
+}
+.subtab:hover{color:var(--ink)}
+.subtab.active{color:var(--violet);border-bottom-color:var(--violet)}
+.subtab:focus-visible{outline:2px solid var(--violet);outline-offset:-3px}
+
+/* ===== contenu ===== */
+main{flex:1;position:relative;min-height:0}
+iframe{
+  position:absolute;inset:0;width:100%;height:100%;
+  border:0;display:none;background:#FBF8F4;
+}
+iframe.visible{display:block}
+
+@media (max-width:520px){
+  .subnav{padding:0 8px}
+  .subtab{padding:0 10px;font-size:.82rem}
+}
+</style>
+</head>
+<body>
+
+<div class="subnav" role="tablist">
+  <button class="subtab active" data-frame="frame-avoiretre" role="tab">📝 Avoir / Être</button>
+  <button class="subtab" data-frame="frame-quiz" role="tab">🖨 Quiz à imprimer</button>
+</div>
+
+<main>
+  <iframe id="frame-avoiretre" title="Expressions avec avoir et être"></iframe>
+  <iframe id="frame-quiz" title="Quiz à imprimer"></iframe>
+</main>
+
+<script>
+const SOURCES = {
+  'frame-avoiretre': 'ex-avoir-etre.html',
+  'frame-quiz': 'quiz-avoir-etre.html'
+};
+
+function show(frameId){
+  document.querySelectorAll('.subtab').forEach(b =>
+    b.classList.toggle('active', b.dataset.frame === frameId));
+  document.querySelectorAll('iframe').forEach(f => {
+    // chargé une seule fois : le travail en cours est conservé
+    if (f.id === frameId && !f.src) f.src = SOURCES[f.id];
+    f.classList.toggle('visible', f.id === frameId);
+  });
+}
+
+document.querySelectorAll('.subtab').forEach(b =>
+  b.addEventListener('click', () => show(b.dataset.frame)));
+
+show('frame-avoiretre');
+</script>
+
+</body>
+</html>
